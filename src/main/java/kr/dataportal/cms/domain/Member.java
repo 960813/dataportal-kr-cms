@@ -4,9 +4,10 @@ package kr.dataportal.cms.domain;
 public class Member {
     private Long id;
     private String authId;
+    private String userName;
     private String passwordHash;
     private String passwordSalt;
-    private String name;
+    private String displayName;
 
     public Long getId() {
         return id;
@@ -40,11 +41,19 @@ public class Member {
         this.passwordSalt = passwordSalt;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 }

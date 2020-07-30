@@ -32,4 +32,9 @@ public class MemoryMemberRepository implements MemberRepository {
     public List<Member> findAll() {
         return new ArrayList<>(store.values());
     }
+
+    // TODO: 2020-07-30 오후 2:30 Test를 위한 store 초기화 메소드 추가 -Jinssssun
+    public void clearStore() {
+        store.clear();
+    }
 }
