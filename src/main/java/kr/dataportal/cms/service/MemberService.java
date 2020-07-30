@@ -35,9 +35,8 @@ public class MemberService implements UserDetailsService {
 
         if (("local:admin").equals(memberEntity.getAuthId())) {
             authorities.add(new SimpleGrantedAuthority(MemberRole.ADMIN.getValue()));
-        } else {
-            authorities.add(new SimpleGrantedAuthority(MemberRole.MEMBER.getValue()));
         }
+        authorities.add(new SimpleGrantedAuthority(MemberRole.MEMBER.getValue()));
 
         return new User(memberEntity.getUsername(), memberEntity.getPassword(), authorities);
     }
@@ -53,13 +52,9 @@ public class MemberService implements UserDetailsService {
         return memberRepository.save(member).getId();
     }
 
-    public Long login(Member member) {
-        return 0L;
-    }
-
-    // TODO: 2020-07-30 오후 3:26 authId를 기반으로 중복 여부 판단 -Jinssssun
+    // TODO: 2020-07-30 오후 9:38 Id를 기반으로 중복 여부 판단 -Jinssssun
     private void validateDuplicateMember(Member member) {
-        memberRepository.findByAuthId(member.getAuthId())
+        memberRepository.findByUsername(member.getUsername())
                 .ifPresent(m -> {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
@@ -79,5 +74,16 @@ public class MemberService implements UserDetailsService {
     // TODO: 2020-07-30 오후 3:29 -Jinssssun
     public Optional<Member> findOne(long id) {
         return memberRepository.findById(id);
+    }
+
+    /**
+     * username을 기반으로 회원 조회
+     *
+     * @param username
+     * @return Optional Member
+     */
+    // TODO: 2020-07-30 오후 3:29 -Jinssssun
+    public Optional<Member> findOne(String username) {
+        return memberRepository.findByUsername(username);
     }
 }

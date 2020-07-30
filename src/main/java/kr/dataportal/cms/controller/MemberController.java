@@ -3,12 +3,16 @@ package kr.dataportal.cms.controller;
 import kr.dataportal.cms.domain.Member;
 import kr.dataportal.cms.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -54,17 +58,6 @@ public class MemberController {
         return "user/signin";
     }
 
-//    @PostMapping("/user/signin")
-//    public String signIn(MemberForm memberForm) {
-//        Member member = new Member();
-//        member.setUsername(memberForm.getUsername());
-//        member.setPassword(memberForm.getPassword());
-//
-//        memberService.login(member);
-//
-//        return "redirect:/";
-//    }
-
     /**
      * 접근 거부 페이지
      *
@@ -80,7 +73,9 @@ public class MemberController {
      * @return
      */
     @GetMapping("/user/info")
-    public String dispMyInfo() {
+    public String dispMyInfo(Principal principal, Model model) {
+        String displayName = memberService.findOne(principal.getName()).get().getDisplayName();
+        model.addAttribute("displayName", displayName);
         return "/user/info";
     }
 

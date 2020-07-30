@@ -49,7 +49,7 @@ class MemoryMemberRepositoryTest {
         member2.setAuthId("local:" + member2.getUsername());
         repository.save(member2);
 
-        Member result = repository.findByAuthId("local:taeyang").get();
+        Member result = repository.findByUsername("taeyang").get();
         assertThat(member1).isEqualTo(result);
     }
 
