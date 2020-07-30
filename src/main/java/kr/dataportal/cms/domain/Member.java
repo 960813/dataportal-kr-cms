@@ -1,8 +1,17 @@
 package kr.dataportal.cms.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 // TODO: 2020-07-30 오후 1:41 Member Domain 생성 -Jinssssun
+@Entity
 public class Member {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String authId;
     private String username;
     private String password;
