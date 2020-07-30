@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<form action="/members/new" method="post">
+    <p>
+        <label for="userName">userName</label>
+        <input type="text" id="userName" name="userName">
+    </p>
+    <p>
+        <label for="password">passwordHash</label>
+        <input type="password" id="password" name="password">
+    </p>
+    <p>
+        <label for="displayName">displayName</label>
+        <input type="text" id="displayName" name="displayName">
+    </p>
+    <input type="submit" value="등록">
+</form>
+</body>
+</html>

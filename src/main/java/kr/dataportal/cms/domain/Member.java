@@ -5,8 +5,7 @@ public class Member {
     private Long id;
     private String authId;
     private String userName;
-    private String passwordHash;
-    private String passwordSalt;
+    private String password;
     private String displayName;
 
     public Long getId() {
@@ -25,20 +24,12 @@ public class Member {
         this.authId = authId;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-
-    public String getPasswordSalt() {
-        return passwordSalt;
-    }
-
-    public void setPasswordSalt(String passwordSalt) {
-        this.passwordSalt = passwordSalt;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getUserName() {

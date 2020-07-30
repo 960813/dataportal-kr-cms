@@ -4,6 +4,7 @@ import kr.dataportal.cms.domain.Member;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 
 import java.util.List;
 
@@ -23,9 +24,7 @@ class MemoryMemberRepositoryTest {
         Member member = new Member();
         member.setDisplayName("Jin TaeYang");
         member.setUserName("taeyang");
-        member.setPasswordHash(member.getUserName() + "password");
-        member.setPasswordSalt(member.getUserName() + "salt");
-        member.setAuthId("local:" + member.getUserName());
+        member.setPassword(member.getUserName() + "password");
 
         repository.save(member);
 
@@ -39,16 +38,14 @@ class MemoryMemberRepositoryTest {
         Member member1 = new Member();
         member1.setDisplayName("Jin TaeYang");
         member1.setUserName("taeyang");
-        member1.setPasswordHash(member1.getUserName() + "password");
-        member1.setPasswordSalt(member1.getUserName() + "salt");
+        member1.setPassword(member1.getUserName() + "password");
         member1.setAuthId("local:" + member1.getUserName());
         repository.save(member1);
 
         Member member2 = new Member();
         member2.setDisplayName("Spring Framework");
         member2.setUserName("spring");
-        member2.setPasswordHash(member2.getUserName() + "password");
-        member2.setPasswordSalt(member2.getUserName() + "salt");
+        member2.setPassword(member2.getUserName() + "password");
         member2.setAuthId("local:" + member2.getUserName());
         repository.save(member2);
 
@@ -61,16 +58,14 @@ class MemoryMemberRepositoryTest {
         Member member1 = new Member();
         member1.setDisplayName("Jin TaeYang");
         member1.setUserName("taeyang");
-        member1.setPasswordHash(member1.getUserName() + "password");
-        member1.setPasswordSalt(member1.getUserName() + "salt");
+        member1.setPassword(member1.getUserName() + "password");
         member1.setAuthId("local:" + member1.getUserName());
         repository.save(member1);
 
         Member member2 = new Member();
         member2.setDisplayName("Spring Framework");
         member2.setUserName("spring");
-        member2.setPasswordHash(member2.getUserName() + "password");
-        member2.setPasswordSalt(member2.getUserName() + "salt");
+        member2.setPassword(member2.getUserName() + "password");
         member2.setAuthId("local:" + member2.getUserName());
         repository.save(member2);
 
