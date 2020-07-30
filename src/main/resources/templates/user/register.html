@@ -16,6 +16,7 @@
     <input type="text" name="displayName" placeholder="표시 이름">
     <input type="submit" value="등록">
 </form>
+<div th:if="${ERR_MSG != null}" th:text="${ERR_MSG}"></div>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

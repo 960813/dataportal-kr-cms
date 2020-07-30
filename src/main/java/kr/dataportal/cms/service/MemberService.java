@@ -1,5 +1,7 @@
 package kr.dataportal.cms.service;
 
+import kr.dataportal.cms.advice.Exception.MemberDuplicateFoundException;
+import kr.dataportal.cms.advice.error.MemberError;
 import kr.dataportal.cms.domain.Member;
 import kr.dataportal.cms.domain.MemberRole;
 import kr.dataportal.cms.repository.MemberRepository;
@@ -10,7 +12,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -56,14 +57,13 @@ public class MemberService implements UserDetailsService {
     private void validateDuplicateMember(Member member) {
         memberRepository.findByUsername(member.getUsername())
                 .ifPresent(m -> {
-                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+                    throw new MemberDuplicateFoundException();
                 });
     }
 
     public List<Member> findAllMembers() {
         return memberRepository.findAll();
     }
-
 
     /**
      * id를 기반으로 회원 조회
