@@ -3,9 +3,6 @@ package kr.dataportal.cms.controller;
 import kr.dataportal.cms.domain.Member;
 import kr.dataportal.cms.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,13 +31,13 @@ public class MemberController {
     }
 
     // TODO: 2020-07-30 오후 2:45 회원가입 폼 Controller -Jinssssun
-    @GetMapping("/user/signup")
-    public String signupForm() {
-        return "user/signup";
+    @GetMapping("/user/register")
+    public String registerForm() {
+        return "user/register";
     }
 
-    @PostMapping("/user/signup")
-    public String signUp(MemberForm memberForm) {
+    @PostMapping("/user/register")
+    public String register(MemberForm memberForm) {
         Member member = new Member();
         member.setUsername(memberForm.getUsername());
         member.setPassword(memberForm.getPassword());
@@ -53,9 +50,9 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping("/user/signin")
-    public String signInForm() {
-        return "user/signin";
+    @GetMapping("/user/login")
+    public String loginForm() {
+        return "user/login";
     }
 
     /**
@@ -63,6 +60,7 @@ public class MemberController {
      *
      * @return
      */
+    @GetMapping("/denied")
     public String dispDenied() {
         return "/denied";
     }
