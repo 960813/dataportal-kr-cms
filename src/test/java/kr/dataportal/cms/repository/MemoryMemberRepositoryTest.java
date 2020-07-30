@@ -23,8 +23,8 @@ class MemoryMemberRepositoryTest {
     void save() {
         Member member = new Member();
         member.setDisplayName("Jin TaeYang");
-        member.setUserName("taeyang");
-        member.setPassword(member.getUserName() + "password");
+        member.setUsername("taeyang");
+        member.setPassword(member.getUsername() + "password");
 
         repository.save(member);
 
@@ -37,16 +37,16 @@ class MemoryMemberRepositoryTest {
     void findByAuthId() {
         Member member1 = new Member();
         member1.setDisplayName("Jin TaeYang");
-        member1.setUserName("taeyang");
-        member1.setPassword(member1.getUserName() + "password");
-        member1.setAuthId("local:" + member1.getUserName());
+        member1.setUsername("taeyang");
+        member1.setPassword(member1.getUsername() + "password");
+        member1.setAuthId("local:" + member1.getUsername());
         repository.save(member1);
 
         Member member2 = new Member();
         member2.setDisplayName("Spring Framework");
-        member2.setUserName("spring");
-        member2.setPassword(member2.getUserName() + "password");
-        member2.setAuthId("local:" + member2.getUserName());
+        member2.setUsername("spring");
+        member2.setPassword(member2.getUsername() + "password");
+        member2.setAuthId("local:" + member2.getUsername());
         repository.save(member2);
 
         Member result = repository.findByAuthId("local:taeyang").get();
@@ -57,16 +57,16 @@ class MemoryMemberRepositoryTest {
     void findAll() {
         Member member1 = new Member();
         member1.setDisplayName("Jin TaeYang");
-        member1.setUserName("taeyang");
-        member1.setPassword(member1.getUserName() + "password");
-        member1.setAuthId("local:" + member1.getUserName());
+        member1.setUsername("taeyang");
+        member1.setPassword(member1.getUsername() + "password");
+        member1.setAuthId("local:" + member1.getUsername());
         repository.save(member1);
 
         Member member2 = new Member();
         member2.setDisplayName("Spring Framework");
-        member2.setUserName("spring");
-        member2.setPassword(member2.getUserName() + "password");
-        member2.setAuthId("local:" + member2.getUserName());
+        member2.setUsername("spring");
+        member2.setPassword(member2.getUsername() + "password");
+        member2.setAuthId("local:" + member2.getUsername());
         repository.save(member2);
 
         List<Member> result = repository.findAll();

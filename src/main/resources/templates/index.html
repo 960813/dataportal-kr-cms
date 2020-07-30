@@ -1,18 +1,22 @@
 <!doctype html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>메인</title>
 </head>
 <body>
-Hello, Spring and DataPortal.KR
+<h1>메인 페이지</h1>
+<hr>
 <ul>
-    <li><a href="/auth/signup">회원 등록</a></li>
-    <li><a href="/auth/login">로그인</a></li>
-    <li><a href="/members">회원 목록</a></li>
+    <li sec:authorize="isAnonymous()"><a th:href="@{/user/signin}">로그인</a></li>
+    <li sec:authorize="isAuthenticated()"><a th:href="@{/user/logout}">로그아웃</a></li>
+    <li sec:authorize="isAnonymous()"><a th:href="@{/user/signup}">회원가입</a></li>
+    <li sec:authorize="isAnonymous()"><a th:href="@{/user/members}">회원목록</a></li>
+    <li sec:authorize="hasRole('ROLE_MEMBER')"><a th:href="@{/user/info}">내정보</a></li>
+    <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">어드민</a></li>
 </ul>
 </body>
 </html>

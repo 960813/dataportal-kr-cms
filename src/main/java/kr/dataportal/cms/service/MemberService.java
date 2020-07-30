@@ -1,21 +1,45 @@
 package kr.dataportal.cms.service;
 
 import kr.dataportal.cms.domain.Member;
+import kr.dataportal.cms.domain.MemberRole;
 import kr.dataportal.cms.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class MemberService {
+public class MemberService implements UserDetailsService {
     private final MemberRepository memberRepository;
 
     @Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Member> memberEntityWrapper = memberRepository.findByUsername(username);
+        Member memberEntity = memberEntityWrapper.get();
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        if (("local:admin").equals(memberEntity.getAuthId())) {
+            authorities.add(new SimpleGrantedAuthority(MemberRole.ADMIN.getValue()));
+        } else {
+            authorities.add(new SimpleGrantedAuthority(MemberRole.MEMBER.getValue()));
+        }
+
+        return new User(memberEntity.getUsername(), memberEntity.getPassword(), authorities);
     }
 
     /**
@@ -26,8 +50,6 @@ public class MemberService {
      */
     public Long join(Member member) {
         validateDuplicateMember(member);
-        Pbkdf2PasswordEncoder encoder = new Pbkdf2PasswordEncoder();
-        member.setPassword(encoder.encode(member.getPassword()));
         return memberRepository.save(member).getId();
     }
 
