@@ -1,6 +1,5 @@
-package kr.dataportal.cms.advice.Exception;
+package kr.dataportal.cms.advice.exception;
 
-import kr.dataportal.cms.advice.error.InterfaceCommonError;
 import kr.dataportal.cms.advice.error.MemberError;
 
 public class MemberDuplicateFoundException extends CommonException {

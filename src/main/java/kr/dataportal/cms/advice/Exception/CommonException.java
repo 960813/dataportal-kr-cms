@@ -1,4 +1,4 @@
-package kr.dataportal.cms.advice.Exception;
+package kr.dataportal.cms.advice.exception;
 
 public class CommonException extends RuntimeException {
     private int ERR_CODE;

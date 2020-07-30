@@ -1,7 +1,7 @@
 package kr.dataportal.cms.service;
 
-import kr.dataportal.cms.advice.Exception.MemberDuplicateFoundException;
-import kr.dataportal.cms.advice.error.MemberError;
+import kr.dataportal.cms.advice.exception.MemberDoesNotExist;
+import kr.dataportal.cms.advice.exception.MemberDuplicateFoundException;
 import kr.dataportal.cms.domain.Member;
 import kr.dataportal.cms.domain.MemberRole;
 import kr.dataportal.cms.repository.MemberRepository;
@@ -30,8 +30,10 @@ public class MemberService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Member> memberEntityWrapper = memberRepository.findByUsername(username);
-        Member memberEntity = memberEntityWrapper.get();
 
+//            throw new MemberDoesNotExist();
+
+        Member memberEntity = memberEntityWrapper.get();
         List<GrantedAuthority> authorities = new ArrayList<>();
 
         if (("local:admin").equals(memberEntity.getAuthId())) {
@@ -40,6 +42,7 @@ public class MemberService implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority(MemberRole.MEMBER.getValue()));
 
         return new User(memberEntity.getUsername(), memberEntity.getPassword(), authorities);
+
     }
 
     /**
