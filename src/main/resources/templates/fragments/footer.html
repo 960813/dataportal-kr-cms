@@ -2,11 +2,11 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body>
 <ul th:fragment="footer">
-    <li sec:authorize="isAnonymous()"><a th:href="@{/}">홈</a></li>
+    <li><a th:href="@{/}">홈</a></li>
     <li sec:authorize="isAnonymous()"><a th:href="@{/user/login}">로그인</a></li>
     <li sec:authorize="isAuthenticated()"><a th:href="@{/user/logout}">로그아웃</a></li>
     <li sec:authorize="isAnonymous()"><a th:href="@{/user/register}">회원가입</a></li>
-    <li sec:authorize="isAnonymous()"><a th:href="@{/user/members}">회원목록</a></li>
+    <li><a th:href="@{/user/members}">회원목록</a></li>
     <li sec:authorize="hasRole('ROLE_MEMBER')"><a th:href="@{/user/info}">내정보</a></li>
     <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">어드민</a></li>
 </ul>

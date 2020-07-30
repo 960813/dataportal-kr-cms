@@ -42,7 +42,6 @@ public class MemberService implements UserDetailsService {
         authorities.add(new SimpleGrantedAuthority(MemberRole.MEMBER.getValue()));
 
         return new User(memberEntity.getUsername(), memberEntity.getPassword(), authorities);
-
     }
 
     /**
