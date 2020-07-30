@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,11 +11,10 @@
 <h1>로그인</h1>
 <hr>
 <form th:action="@{/user/login}" method="post">
-    <input type="text" name="username" placeholder="아이디를 입력해주세요.">
+    <input type="text" name="username" placeholder="아이디" th:value="${username}">
     <input type="password" name="password" placeholder="비밀번호">
     <input type="submit" value="로그인">
 </form>
-<div th:if="${ERR_MSG != null}" th:text="${ERR_MSG}"></div>
-<div th:replace="fragments/footer :: footer"></div>
+<div th:replace="fragments/footer :: footer_normal"></div>
 </body>
 </html>

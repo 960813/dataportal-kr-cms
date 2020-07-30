@@ -1,6 +1,6 @@
 package kr.dataportal.cms;
 
-import kr.dataportal.cms.repository.MemberRepository;
+import kr.dataportal.cms.advice.MemberAuthenticationFailureHandler;
 import kr.dataportal.cms.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new Pbkdf2PasswordEncoder();
     }
 
+    @Bean
+    public MemberAuthenticationFailureHandler memberAuthenticationFailureHandler() {
+        return new MemberAuthenticationFailureHandler();
+    }
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         // static 디렉터리의 하위 파일 목록은 인증 무시 ( = 항상 통과 )
@@ -46,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and() // 로그인 설정
                 .formLogin()
                 .loginPage("/user/login")
+                .failureHandler(memberAuthenticationFailureHandler())
                 .defaultSuccessUrl("/user/info")
                 .permitAll()
 

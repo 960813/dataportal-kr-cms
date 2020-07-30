@@ -55,6 +55,11 @@ public class MemberController {
         return "user/login";
     }
 
+    @PostMapping("/user/login/fail")
+    public String loginFail() {
+        return "user/login";
+    }
+
     /**
      * 접근 거부 페이지
      *
