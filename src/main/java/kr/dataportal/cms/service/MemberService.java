@@ -31,6 +31,10 @@ public class MemberService {
         return memberRepository.save(member).getId();
     }
 
+    public Long login(Member member) {
+        return 0L;
+    }
+
     // TODO: 2020-07-30 오후 3:26 authId를 기반으로 중복 여부 판단 -Jinssssun
     private void validateDuplicateMember(Member member) {
         memberRepository.findByAuthId(member.getAuthId())

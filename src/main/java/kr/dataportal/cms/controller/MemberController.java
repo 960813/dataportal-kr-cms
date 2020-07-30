@@ -20,13 +20,13 @@ public class MemberController {
     }
 
     // TODO: 2020-07-30 오후 2:45 회원가입 폼 Controller -Jinssssun
-    @GetMapping("/members/new")
-    public String createMembersForm() {
-        return "members/newMembersForm";
+    @GetMapping("/auth/signup")
+    public String signupForm() {
+        return "auth/signup";
     }
 
-    @PostMapping("/members/new")
-    public String createMember(MemberForm memberForm) {
+    @PostMapping("/auth/signup")
+    public String signUp(MemberForm memberForm) {
         Member member = new Member();
         member.setUserName(memberForm.getUserName());
         member.setPassword(memberForm.getPassword());
@@ -38,10 +38,20 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping("/members/list")
-    public String listMember(Model model) {
+    @GetMapping("/members")
+    public String listMembers(Model model) {
         List<Member> allMembers = memberService.findAllMembers();
         model.addAttribute("allMembers", allMembers);
-        return "members/list";
+        return "auth/members";
+    }
+
+    @GetMapping("/auth/login")
+    public String signInForm() {
+        return "auth/signin";
+    }
+
+    @PostMapping("/auth/login")
+    public String signIn(Member member) {
+        memberService.login(member);
     }
 }

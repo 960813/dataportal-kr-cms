@@ -8,11 +8,16 @@
     <title>Document</title>
 </head>
 <body>
-Hello, Spring and DataPortal.KR
-<ul>
-    <li><a href="/auth/signup">회원 등록</a></li>
-    <li><a href="/auth/login">로그인</a></li>
-    <li><a href="/members">회원 목록</a></li>
-</ul>
+<form action="/members/signin" method="post">
+    <p>
+        <label for="userName">userName</label>
+        <input type="text" id="userName" name="userName">
+    </p>
+    <p>
+        <label for="password">password</label>
+        <input type="password" id="password" name="password">
+    </p>
+    <input type="submit" value="로그인">
+</form>
 </body>
 </html>
