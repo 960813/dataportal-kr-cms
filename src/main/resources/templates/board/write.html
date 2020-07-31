@@ -10,6 +10,11 @@
 <body>
 <h1>글 작성</h1>
 <hr>
+<form th:action="@{/board/write}" method="post">
+    <input type="text" name="title" placeholder="제목"><br>
+    <textarea name="content" icols="30" rows="10"></textarea>
+    <input type="submit" value="등록">
+</form>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

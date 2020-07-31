@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface SpringDataJpaMemberRepository extends JpaRepository<Member, Long> {
     Member save(Member member);
 
-    Optional<Member> findById(long id);
+    Optional<Member> findById(Long id);
 
     Optional<Member> findByUsername(String username);
 
