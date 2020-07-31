@@ -3,6 +3,8 @@
 <body>
 <ul th:fragment="footer">
     <li><a th:href="@{/}">홈</a></li>
+    <li sec:authorize="isAuthenticated()"><a th:href="@{/board/list}">글 목록</a></li>
+    <li sec:authorize="isAuthenticated()"><a th:href="@{/board/write}">글 작성</a></li>
     <li sec:authorize="isAnonymous()"><a th:href="@{/user/login}">로그인</a></li>
     <li sec:authorize="isAuthenticated()"><a th:href="@{/user/logout}">로그아웃</a></li>
     <li sec:authorize="isAnonymous()"><a th:href="@{/user/register}">회원가입</a></li>

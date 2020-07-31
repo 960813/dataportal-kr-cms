@@ -1,10 +1,9 @@
 package kr.dataportal.cms.service;
 
-import kr.dataportal.cms.advice.exception.MemberDoesNotExist;
 import kr.dataportal.cms.advice.exception.MemberDuplicateFoundException;
 import kr.dataportal.cms.domain.Member;
 import kr.dataportal.cms.domain.MemberRole;
-import kr.dataportal.cms.repository.MemberRepository;
+import kr.dataportal.cms.repository.SpringDataJpaMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,10 +19,10 @@ import java.util.Optional;
 
 @Transactional
 public class MemberService implements UserDetailsService {
-    private final MemberRepository memberRepository;
+    private final SpringDataJpaMemberRepository memberRepository;
 
     @Autowired
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(SpringDataJpaMemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 

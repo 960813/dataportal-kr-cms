@@ -1,9 +1,9 @@
 package kr.dataportal.cms.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 // TODO: 2020-07-30 오후 1:41 Member Domain 생성 -Jinssssun
 @Entity
